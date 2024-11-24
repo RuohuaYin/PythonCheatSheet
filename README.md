@@ -244,7 +244,8 @@ def compare(item1, item2):
     return 0
 
 # Sort using custom comparison
-sorted_list = sorted(items, key=cmp_to_key(compare))
+list = ['a', 'bcd', 'xyz']
+list.sort(key=cmp_to_key(compare))
 ```
 
 ## Taking Multiple Inputs
