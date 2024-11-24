@@ -77,6 +77,13 @@ d.update({key: value})  # Batch update
 from collections import defaultdict
 d = defaultdict(list)     # Auto-initialize missing keys
 d = defaultdict(int)      # Useful for counting
+
+# Iterations
+for key in d:
+for item in d.items():
+for key, value in d.items():
+for key in d.keys():
+for value in d.values():
 ```
 
 ## Counter
