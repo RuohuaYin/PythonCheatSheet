@@ -402,5 +402,10 @@ def good(lst=None):  # Do this instead
 
 9. Python is [Pass by Assignment](https://medium.com/@devyjoneslocker/understanding-pythons-pass-by-assignment-in-the-backdrop-of-pass-by-value-vs-9f5cc602f943#:~:text=Python's%20behavior%20is%20neither%20purely,and%20references%20work%20in%20Python.) Instead
 
+10. Random Integer
+```
+import random
+print(random.randint(3, 9)) # both included
+```
 ---
 Made with ❤️ for fellow leetcoders.
