@@ -400,5 +400,7 @@ def good(lst=None):  # Do this instead
     return lst
 ```
 
+9. Python is [Pass by Assignment Instead]([url](https://medium.com/@devyjoneslocker/understanding-pythons-pass-by-assignment-in-the-backdrop-of-pass-by-value-vs-9f5cc602f943#:~:text=Python's%20behavior%20is%20neither%20purely,and%20references%20work%20in%20Python.))
+
 ---
 Made with ❤️ for fellow leetcoders.
