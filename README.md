@@ -40,11 +40,15 @@ Time Complexities:
 nums = [1,2,3]
 
 # Common Operations
-nums.index(1)      # Find index
-nums.append(1)     # Add to end
-nums.insert(0,10)  # Add 10 from left (at index 0 which is start)
-nums.remove(3)     # Remove value
+nums.append(1)     # Add to end 
+nums.insert(0,10)  # Add 10 at index 0 
+
+nums.remove(3)     # Remove a specific value, error when value not exist
 nums.pop()         # Remove & return last element
+nums.pop(1)        # Remove at specific index, error when out of index
+
+nums.index(1)      # Find index
+
 nums.sort()        # In-place sort (TimSort: O(n log n))
 nums.reverse()     # In-place reverse
 nums.copy()        # Return shallow copy
@@ -52,11 +56,64 @@ nums.copy()        # Return shallow copy
 # List Slicing
 nums[start:stop:step]  # Generic slice syntax
 nums[-1]    # Last item
+nums[:-1]   # Everything before the last one
+nums[1:]    # Everything since index 1
+nums[:3]    # Everything before the index 3 (index: 0,1,2)
 nums[::-1]  # Reverse list
-nums[1:]    # Everything after index 1
-nums[:3]    # First three elements
 ```
 
+## Deque
+Time Complexities:
+![Deque Operations](https://user-images.githubusercontent.com/47276307/172330115-78500420-3276-4e45-8ce3-fd668b7eb14e.jpg)
+
+```python
+from collections import deque
+
+# Perfect for BFS - O(1) operations on both ends
+d = deque()
+# stack
+d.append(1)          # Add right
+d.pop()              # Remove right, error when empty
+# queue
+d.append(1)          # Add right
+d.popleft()          # Remove left error when empty
+# other
+d.pop(2)             # Remove at specific index, error when out of index
+d.appendleft(2)      # Add left
+d.extend([1,2,3])    # Extend right --> [prev,...1,2,3]
+d.extendleft([1,2,3])# Extend left --> [3,2,1,...,prev]
+d.rotate(n)          # Rotate n steps right (negative for left)
+```
+
+## Sets
+Time Complexities:
+![Untitled](https://user-images.githubusercontent.com/47276307/172330132-7a785f5f-bbc6-43b9-b82f-794190813787.jpg)
+
+```python
+s = {1,2,3}
+
+# Common Operations
+s.add(4)             # Add element
+s.discard(4)         # Remove (no error if missing)
+
+# Less common operations
+s.remove(4)          # Remove (raises error if missing)
+s.pop()              # Remove and return last? element
+
+# Iterate 
+for val in s:                  #1 Simple for-loop 
+for id, val in enumerate(s):   #2 enumerated
+s_list = list(s)               #3 convert to a indexed list
+for idx in s_list: 
+
+# Set Operations
+a.union(b)           # Elements in a OR b
+a.intersection(b)    # Elements in a AND b
+a.difference(b)      # Elements in a but NOT in b
+a.symmetric_difference(b)  # Elements in a OR b but NOT both
+a.issubset(b)        # True if all elements of a are in b
+a.issuperset(b)      # True if all elements of b are in a
+```
 ## Dictionary
 Time Complexities:
 ![Dictionary Operations](https://user-images.githubusercontent.com/47276307/172330107-e68e3228-1c76-4bfb-bb38-04d18f94d5b9.jpg)
@@ -65,12 +122,15 @@ Time Complexities:
 d = {'a':1, 'b':2}
 
 # Essential Operations
+# Get
+d['a']                    # error when key is not existed
 d.get('key', default)     # Safe access with default
+# Set
+d['a'] = 3
 d.setdefault('key', 0)    # Set if missing
-d.items()                 # Key-value pairs
-d.keys()                  # Just keys
-d.values()               # Just values
-d.pop(key)              # Remove and return value
+# Remove 
+d.pop(key)              # Remove and return value, error if key is not exist
+# Other
 d.update({key: value})  # Batch update
 
 # Advanced Usage
@@ -84,39 +144,6 @@ for item in d.items():
 for key, value in d.items():
 for key in d.keys():
 for value in d.values():
-```
-
-## Counter
-```python
-from collections import Counter
-
-# Initialize
-c = Counter(['a','a','b'])    # From iterable
-c = Counter("hello")          # From string
-
-# Operations
-c.most_common(2)      # Top 2 frequent elements
-c['a'] += 1           # Increment count
-c.update("more")      # Add counts from iterable
-c.total()             # Sum of all counts
-```
-
-## Deque
-Time Complexities:
-![Deque Operations](https://user-images.githubusercontent.com/47276307/172330115-78500420-3276-4e45-8ce3-fd668b7eb14e.jpg)
-
-```python
-from collections import deque
-
-# Perfect for BFS - O(1) operations on both ends
-d = deque()
-d.append(1)          # Add right
-d.appendleft(2)      # Add left
-d.pop()              # Remove right
-d.popleft()          # Remove left
-d.extend([1,2,3])    # Extend right
-d.extendleft([1,2,3])# Extend left
-d.rotate(n)          # Rotate n steps right (negative for left)
 ```
 
 ## Heapq
@@ -144,26 +171,19 @@ heap = []
 heapq.heappush(heap, (priority, item))  # Sort by priority
 ```
 
-## Sets
-Time Complexities:
-![Untitled](https://user-images.githubusercontent.com/47276307/172330132-7a785f5f-bbc6-43b9-b82f-794190813787.jpg)
-
+## Counter
 ```python
-s = {1,2,3}
+from collections import Counter
 
-# Common Operations
-s.add(4)             # Add element
-s.remove(4)          # Remove (raises error if missing)
-s.discard(4)         # Remove (no error if missing)
-s.pop()              # Remove and return arbitrary element
+# Initialize
+c = Counter(['a','a','b'])    # From iterable
+c = Counter("hello")          # From string
 
-# Set Operations
-a.union(b)           # Elements in a OR b
-a.intersection(b)    # Elements in a AND b
-a.difference(b)      # Elements in a but NOT in b
-a.symmetric_difference(b)  # Elements in a OR b but NOT both
-a.issubset(b)        # True if all elements of a are in b
-a.issuperset(b)      # True if all elements of b are in a
+# Operations
+c.most_common(2)      # Top 2 frequent elements
+c['a'] += 1           # Increment count
+c.update("more")      # Add counts from iterable
+c.total()             # Sum of all counts
 ```
 
 ## Tuples
